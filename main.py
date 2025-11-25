@@ -26,7 +26,7 @@ As well as the text chunking, remove any characters or elements that are redunda
 # --------------------------------------------------------------------------------------------------------
 def replace_potentially_helpful_symbols(text: str):
     """
-    Only using for Spacy since we manage these symbols 
+    Replace some symbols that CAN be useful for describing text
     """
     replacements = {
         "&": " and ",
@@ -80,9 +80,9 @@ def preprocess_text(text: str):
 
 # --------------------------------------------------------------------------------
 """
-I know it's possible to just use something like the above to accomplish this but
-the task intrigued me enough that I ended up spending more time NLP techniques
-and wanted to try doing it manually.
+I know it's possible to just use something like Spacy or nltk to accomplish this but
+the task intrigued me enough that I ended up spending more time looking up NLP 
+techniques and wanted to try doing it manually.
 """
 
 conjunctions_and_connectors = [
@@ -163,11 +163,9 @@ def chunk(text: str, chunk_size: int = 200) -> list[str]:
 def manual(text: str):
     chunks = chunk(text)
     print([chunk for chunk in chunks])
-    print(len(chunks))
-
 
 """
-In order for this to work with any other language we'd need to either use specific corpuses 
+4. In order for this to work with any other language we'd need to either use specific corpuses 
 with that language in the case of Spacy, or for the manual process, have a greater understanding 
 of the language and how sentences and phrases are structured in order to split it on specific 
 terms as well as the flow of the text (i.e. Arabic and Japanese are entirely different structures
@@ -190,8 +188,6 @@ if __name__ == "__main__":
     if not args.t:
         with open('./text1.txt') as f1, open('./text2.txt') as f2:
             text = preprocess_text(f1.read())
-
-            print("\n\n")
             manual(text)
 
             text = preprocess_text(f2.read())
@@ -199,8 +195,5 @@ if __name__ == "__main__":
             print("\n\n")
             manual(text)
     else:
-
         text = preprocess_text(args.t)
-
-        print("\n\n")
         manual(text)
