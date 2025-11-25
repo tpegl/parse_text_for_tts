@@ -48,7 +48,7 @@ def replace_potentially_helpful_symbols(text: str):
 # Remove fillers and vocalisations as they aren't needed for TTS unless
 # you want a more "natural" sounding speech
 fillers_and_vocalisations = [
-    'um', 'uh', 'hm', 'ah'
+    ' umm ', ' uhh ', ' hmm ', ' ahh '
 ]
 
 def remove_unnecessary_words_or_characters(text: str):
