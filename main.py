@@ -47,7 +47,7 @@ def replace_potentially_helpful_symbols(text: str):
 
 # Remove some vocalisations like umm, uhh, hmm, ahhh, as they aren't 
 # needed for TTS unless you want a more "natural" sounding speech
-def remove_unnecessary_words_or_characters(text: str):
+def remove_unnecessary_vocalisations(text: str):
     return re.sub(r"(?<!\w)(uh+|hm+|um+|ah+|oh+)(?=\W*|$)", "", text)
 
 def preprocess_text(text: str):
@@ -56,7 +56,7 @@ def preprocess_text(text: str):
     text = text.replace('\n', ' ').replace('\t', ' ').replace('\r', ' ')
 
     text = replace_potentially_helpful_symbols(text)
-    text = remove_unnecessary_words_or_characters(text)
+    text = remove_unnecessary_vocalisations(text)
 
     # Regex pattern for matching many non-speech characters and remove them.
     # Even if they might be used in text like hashtags or usernames from
